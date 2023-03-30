@@ -1,0 +1,3 @@
+/home/rflower/Documents/dev/DEV/c/ascii/CMakeFiles/rebuild_cache.dir
+/home/rflower/Documents/dev/DEV/c/ascii/CMakeFiles/edit_cache.dir
+/home/rflower/Documents/dev/DEV/c/ascii/CMakeFiles/ascii.app.dir
