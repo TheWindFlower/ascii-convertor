@@ -1,3 +1,3 @@
-/home/rflower/Documents/dev/DEV/c/ascii/build/CMakeFiles/rebuild_cache.dir
-/home/rflower/Documents/dev/DEV/c/ascii/build/CMakeFiles/edit_cache.dir
-/home/rflower/Documents/dev/DEV/c/ascii/build/CMakeFiles/ascii.app.dir
+/mnt/c/Users/camil/Documents/dev/ascii-convertor/build/CMakeFiles/ascii.app.dir
+/mnt/c/Users/camil/Documents/dev/ascii-convertor/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/camil/Documents/dev/ascii-convertor/build/CMakeFiles/rebuild_cache.dir

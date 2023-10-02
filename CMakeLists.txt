@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.25)
 project( ascii )
 find_package( OpenCV REQUIRED )
 find_package( Threads REQUIRED )

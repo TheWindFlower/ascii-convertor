@@ -1,7 +1,7 @@
 [
 {
-  "directory": "/home/rflower/Documents/dev/DEV/c/ascii/build",
-  "command": "/usr/bin/g++  -isystem /usr/local/include/opencv4 -g -o CMakeFiles/ascii.app.dir/mina.cpp.o -c /home/rflower/Documents/dev/DEV/c/ascii/mina.cpp",
-  "file": "/home/rflower/Documents/dev/DEV/c/ascii/mina.cpp"
+  "directory": "/mnt/c/Users/camil/Documents/dev/ascii-convertor/build",
+  "command": "/usr/bin/g++  -isystem /usr/local/include/opencv4 -g -o CMakeFiles/ascii.app.dir/mina.cpp.o -c /mnt/c/Users/camil/Documents/dev/ascii-convertor/mina.cpp",
+  "file": "/mnt/c/Users/camil/Documents/dev/ascii-convertor/mina.cpp"
 }
 ]

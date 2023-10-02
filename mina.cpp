@@ -9,15 +9,9 @@
 using std::string;
 using namespace cv;
 
-void sleep(int x)
-{
-    std::this_thread::sleep_for(std::chrono::milliseconds(x));
-}
+#define sleep(x) std::this_thread::sleep_for(std::chrono::milliseconds(x));
 
-void clear()
-{
-    system("clear");
-}
+#define clear system("clear");
 
 void reverseStr(string &str)
 {
@@ -31,8 +25,8 @@ void reverseStr(string &str)
 
 char grayToChar(int gray)
 {
-    string CHAR_LIST = " *@";
-    // string CHAR_LIST = " .:-=+*#%@";
+    // string CHAR_LIST = " *@";
+    string CHAR_LIST = ".:-=+*#%@";
     // string CHAR_LIST = ("$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~i!lI;:,\"^` ");
     reverseStr(CHAR_LIST);
     int num_chars = CHAR_LIST.size();
@@ -116,9 +110,9 @@ void run(string filename)
         capture >> frame;
         if (!frame.empty())
         {
-            std::cout << toASCII(frame) << std::endl;
+            // std::cout << toASCII(frame) << std::endl;
             sleep(32); // divied the sleep to avoid blanking
-            clear();
+            clear;
         }
     }
 }
@@ -132,27 +126,50 @@ void play_audio(string file)
 
 int main(int argc, char *argv[])
 {
-    char *instr = argv[1];
-    if (strcmp(instr, "-v") == 0 || strcmp(instr, "--video") == 0)
+    bool silent = false;
+
+    for (int i = 0; i < argc; i++)
     {
+        std::cout << argv[i] << std::endl;
+        if (argv[i] == "-s")
+        {
+            silent = true;
+        }
+    }
+    // char *instr = argv[1];
+    /*if (strcmp(instr, "-v") == 0 || strcmp(instr, "--video") == 0)
+    {
+        string video_filename = "";
+        string audio_file = ""; // point the path of the generated audio file
 
-        string video_filename = "/home/rflower/Documents/dev/DEV/c/ascii/image/output.mp4";
         // extract audio
-        std::system("/home/rflower/Documents/dev/DEV/c/ascii/image/*");
-        string cmd_ = ("ffmpeg -i " + video_filename + " -q:a 0 -map a /home/rflower/Documents/dev/DEV/c/ascii/audio/audio.mp3");
-        const char *cmd = cmd_.c_str();
+        const char *cmd = std::string("ffmpeg -i " + video_filename + " -q:a 0 -map a" + audio_file).c_str();
         std::system(cmd);
-
-        string audio_file = "/home/rflower/Documents/dev/DEV/c/ascii/audio/audio.mp3";
 
         std::thread t1(play_audio, audio_file);
         sleep(500);
         run(video_filename);
+    }*/
+    if (1 == 2)
+    {
     }
     else
     {
-        Mat frame = imread("/home/rflower/Documents/dev/DEV/c/ascii/image/b.jpg");
-        std::cout << toASCII(frame);
+        Mat frame = imread("/mnt/c/Users/camil/Documents/dev/ascii-convertor/files/images/back.png");
+        std::string data = toASCII(frame);
+        if (!silent)
+            std::cout << data << std::endl;
+
+        std::ofstream file("/mnt/c/Users/camil/Documents/dev/ascii-convertor/web/index.html");
+        if (!file.is_open())
+        {
+            std::cerr << "Error opening the file." << std::endl;
+        }
+        std::string prefix = "<link href='styles.css' rel='stylesheet' type='text/css' /> <span style = 'white-space: pre-line'>";
+        std::string suffix = "</span>";
+        file << prefix + data + suffix;
+
+        file.close();
     }
     return 0;
 }

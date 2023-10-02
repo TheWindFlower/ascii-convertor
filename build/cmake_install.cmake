@@ -1,4 +1,4 @@
-# Install script for directory: /home/rflower/Documents/dev/DEV/c/ascii
+# Install script for directory: /mnt/c/Users/camil/Documents/dev/ascii-convertor
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/rflower/Documents/dev/DEV/c/ascii/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/c/Users/camil/Documents/dev/ascii-convertor/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

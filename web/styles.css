@@ -1,0 +1,11 @@
+html,
+body {
+  background-color: rgb(0, 0, 0);
+}
+
+span{
+  line-height: 50%;
+  font-size: 5;
+  font-family: "Consolas";
+  color: rgb(255, 255, 255)
+}
