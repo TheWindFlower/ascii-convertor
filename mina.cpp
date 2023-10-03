@@ -23,11 +23,18 @@ void reverseStr(string &str)
         swap(str[i], str[n - i - 1]);
 }
 
-char grayToChar(int gray)
+char grayToChar(int gray, int chrlist)
 {
-    // string CHAR_LIST = " *@";
-    string CHAR_LIST = ".:-=+*#%@";
-    // string CHAR_LIST = ("$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~i!lI;:,\"^` ");
+	string CHAR_LIST;
+	switch chrlist
+	case 1:
+		CHAR_LIST = "*@";
+	case 2:
+		CHAR_LIST = ".:-=+*#%@";
+	case 3:
+		CHAR_LIST = ("$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~i!lI;:,\"^`")
+	default :
+		CHAR_LIST = ".@"
     reverseStr(CHAR_LIST);
     int num_chars = CHAR_LIST.size();
     return CHAR_LIST[std::min(int(gray * num_chars / 255), num_chars - 1)];
@@ -103,7 +110,7 @@ void run(string filename)
     Mat frame;
     if (!capture.isOpened())
     {
-        std::cout << "balls" << std::endl;
+        std::cerr << "error" << std::endl;
     }
     for (;;)
     {
@@ -127,14 +134,16 @@ void play_audio(string file)
 int main(int argc, char *argv[])
 {
     bool silent = false;
+    int chrlist = 1
 
     for (int i = 0; i < argc; i++)
     {
-        std::cout << argv[i] << std::endl;
-        if (argv[i] == "-s")
-        {
-            silent = true;
-        }
+	    if (strcmp(argv[i], "-s") == 0){
+		    silent = true;
+	    }
+	    else if (strcmp(argv[i], "-cl"){
+			    chrlist = argv[i+1]
+			    }
     }
     // char *instr = argv[1];
     /*if (strcmp(instr, "-v") == 0 || strcmp(instr, "--video") == 0)
