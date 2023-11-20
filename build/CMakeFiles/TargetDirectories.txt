@@ -1,3 +1,0 @@
-/mnt/c/Users/camil/Documents/dev/ascii-convertor/build/CMakeFiles/ascii.app.dir
-/mnt/c/Users/camil/Documents/dev/ascii-convertor/build/CMakeFiles/edit_cache.dir
-/mnt/c/Users/camil/Documents/dev/ascii-convertor/build/CMakeFiles/rebuild_cache.dir

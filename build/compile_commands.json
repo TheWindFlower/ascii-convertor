@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/mnt/c/Users/camil/Documents/dev/ascii-convertor/build",
-  "command": "/usr/bin/g++  -I/mnt/c/Users/camil/Documents/dev/ascii-convertor/include -isystem /usr/local/include/opencv4 -g -o CMakeFiles/ascii.app.dir/src/mina.cpp.o -c /mnt/c/Users/camil/Documents/dev/ascii-convertor/src/mina.cpp",
-  "file": "/mnt/c/Users/camil/Documents/dev/ascii-convertor/src/mina.cpp"
-}
-]
