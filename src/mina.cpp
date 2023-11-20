@@ -5,6 +5,7 @@
 #include <thread>
 #include <iostream>
 #include <cstring>
+#include "../include/include.hpp"
 
 using std::string;
 using namespace cv;
@@ -12,16 +13,6 @@ using namespace cv;
 #define sleep(x) std::this_thread::sleep_for(std::chrono::milliseconds(x));
 
 #define clear system("clear");
-
-void reverseStr(string &str)
-{
-    int n = str.length();
-
-    // Swap character starting from two
-    // corners
-    for (int i = 0; i < n / 2; i++)
-        swap(str[i], str[n - i - 1]);
-}
 
 char grayToChar(int gray, int chrlst, bool invert)
 {
@@ -42,21 +33,10 @@ char grayToChar(int gray, int chrlst, bool invert)
     }
     if (invert)
     {
-        reverseStr(CHAR_LIST);
+        CHAR_LIST = reverseStr(CHAR_LIST);
     }
     int num_chars = CHAR_LIST.size();
     return CHAR_LIST[std::min(int(gray * num_chars / 255), num_chars - 1)];
-}
-
-int mean(std::vector<int> a)
-{
-    int f = 0;
-    for (int i = 0; i < a.size(); i++)
-    {
-        f += a[i];
-    }
-    f = f / a.size();
-    return f;
 }
 
 std::vector<int> rect_of_pix(Mat greyMat, int cell_height, int cell_width, int col, int row)
@@ -72,11 +52,12 @@ std::vector<int> rect_of_pix(Mat greyMat, int cell_height, int cell_width, int c
     return array_of_pix;
 }
 
-string toASCII(Mat frame, int chrlist, bool invert, double res)
+string toASCII(Mat frame, int chrlist, bool invert, double res, bool color, bool bgcolor)
 {
     Mat greyMat;
     Mat resizeMat;
     resize(frame, resizeMat, Size(), res, res, INTER_AREA);
+
     cvtColor(resizeMat, greyMat, COLOR_BGR2GRAY);
     // int rows = ;
     // int cols = ;
@@ -84,34 +65,40 @@ string toASCII(Mat frame, int chrlist, bool invert, double res)
     int width = greyMat.cols;  // max width array //colone(col)
     // int cell_width = width / cols;
     // int cell_height = height / rows;
-    string result = "";
 
-    // int pixelValue = (int)greyMat.at<uchar>(i, j); // get greyscale value
-    //  need to take a rectangle of pixel, get their greyscale value make a mean of all of them
-    /*
-        for (int row = 0; row < rows; row++)
-        {
-            for (int col = 0; col < cols; col++)
-            {
-                int gray = mean(rect_of_pix(greyMat, cell_height, cell_width, col, row));
-                result += grayToChar(gray);
-            }
-            result.append("\n");
-        }
-        return result;
-        */
+    string result = "";
+    string prefix;
+    char tempchar;
+    cv::Vec3b colorVar; // var to hold the vec3 of each rgb value
+
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
-            result += grayToChar((int)greyMat.at<uchar>(i, j), chrlist, invert);
+            if (color)
+            {
+                tempchar = grayToChar((int)greyMat.at<uchar>(i, j), chrlist, invert); // (int)greyMat.at<uchar>(i, j) value of grey at i,j
+                colorVar = resizeMat.at<cv::Vec3b>(i, j);                             // return the color of the pixel in form of a tuple vec3
+                prefix = "\033[38;2;" + std::to_string(colorVar[2]) + ";" + std::to_string(colorVar[1]) + ";" + std::to_string(colorVar[0]) + "m";
+                result += prefix + tempchar + tempchar;
+            }
+            else if (bgcolor)
+            {
+                colorVar = resizeMat.at<cv::Vec3b>(i, j); // return the color of the pixel in form of a tuple vec3
+                prefix = "\033[48;2;" + std::to_string(colorVar[2]) + ";" + std::to_string(colorVar[1]) + ";" + std::to_string(colorVar[0]) + "m";
+                result += prefix + "  ";
+            }
+            else
+            {
+                result += grayToChar((int)greyMat.at<uchar>(i, j), chrlist, invert);
+            }
         }
-        result += "\n";
+        result += "\033[0m\n";
     }
     return result;
 }
 
-void run(string filename, int chrlist, bool invert, double res)
+void runVideo(string filename, int chrlist, bool invert, double res)
 {
     string video_path = samples::findFile(filename);
     VideoCapture capture(video_path);
@@ -126,8 +113,8 @@ void run(string filename, int chrlist, bool invert, double res)
         capture >> frame;
         if (!frame.empty())
         {
-            std::cout << toASCII(frame, chrlist, invert, res) << std::endl;
-            sleep(1000); // divied the sleep to avoid blanking
+            std::cout << toASCII(frame, chrlist, invert, res, false, false) << std::endl; // pass false to color and bg color
+            sleep(1000);                                                                  // divied the sleep to avoid blanking
             clear;
         }
     }
@@ -148,7 +135,9 @@ int main(int argc, char *argv[])
     double res = 0.2;
     bool vid = false;
     bool display = true;
-    std::string path = "/mnt/c/Users/camil/Documents/dev/ascii-convertor/files/images/tes.png";
+    bool color = false;
+    bool bgcolor = false;
+    std::string path = "/mnt/c/Users/camil/Documents/dev/ascii-convertor/files/images/1.jpg";
 
     for (int i = 0; i < argc; i++)
     {
@@ -176,17 +165,27 @@ int main(int argc, char *argv[])
         {
             vid = true;
         }
+        else if (strcmp(argv[i], "-c") == 0)
+        {
+            color = true;
+        }
+        else if (strcmp(argv[i], "-bg") == 0)
+        {
+            bgcolor = true;
+        }
         else if (strcmp(argv[i], "-h") == 0)
         {
             std::cout
-                << "┍━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑" << std::endl
-                << "|-s  (silent)    | {option:None}   | does not print the result in the console       |" << std::endl
-                << "|-cl (char array)| {option:1,2,3}  | choose between 3 array of char //UNSAFE        |" << std::endl
-                << "|-i  (invert)    | {option:None}   | invert the array of char                       |" << std::endl
-                << "|-r  (resize)    | {option:double} | choose the ration to resize the image //UNSAFE |" << std::endl
-                << "|-v  (video)     | {option:None}   | send each frame of the video to be converted   |" << std::endl
-                << "|-h  (help)      | {option:None}   | show this message                              |" << std::endl
-                << "┕━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙" << std::endl;
+                << "┍━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑" << std::endl
+                << "|-s  (silent)           | {option:None}   | does not print the result in the console       |" << std::endl
+                << "|-cl (char array)       | {option:1,2,3}  | choose between 3 array of char //UNSAFE        |" << std::endl
+                << "|-i  (invert)           | {option:None}   | invert the array of char                       |" << std::endl
+                << "|-c  (color)            | {option:None}   | display the image in color //WIP               |" << std::endl
+                << "|-bg (background color) | {option:None}   | display the image without char in color //WIP  |" << std::endl
+                << "|-r  (resize)           | {option:double} | choose the ration to resize the image //UNSAFE |" << std::endl
+                << "|-v  (video)            | {option:None}   | send each frame of the video to be converted   |" << std::endl
+                << "|-h  (help)             | {option:None}   | show this message                              |" << std::endl
+                << "┕━━━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙" << std::endl;
             display = false;
         }
     }
@@ -205,15 +204,16 @@ int main(int argc, char *argv[])
 
             // std::thread t1(play_audio, audio_file);
             // sleep(500);
-            run(video_filename, chrlist, invert, res);
+            runVideo(video_filename, chrlist, invert, res);
         }
         else
         {
             Mat frame = imread(path);
-            std::string data = toASCII(frame, chrlist, invert, res);
+            std::string data = toASCII(frame, chrlist, invert, res, color, bgcolor);
             if (!silent)
                 std::cout << data << std::endl;
 
+            // write result in html file and add style
             std::ofstream file("/mnt/c/Users/camil/Documents/dev/ascii-convertor/web/index.html");
             if (!file.is_open())
             {

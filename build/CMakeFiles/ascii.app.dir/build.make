@@ -69,28 +69,28 @@ include CMakeFiles/ascii.app.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/ascii.app.dir/flags.make
 
-CMakeFiles/ascii.app.dir/mina.cpp.o: CMakeFiles/ascii.app.dir/flags.make
-CMakeFiles/ascii.app.dir/mina.cpp.o: /mnt/c/Users/camil/Documents/dev/ascii-convertor/mina.cpp
-CMakeFiles/ascii.app.dir/mina.cpp.o: CMakeFiles/ascii.app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/camil/Documents/dev/ascii-convertor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ascii.app.dir/mina.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ascii.app.dir/mina.cpp.o -MF CMakeFiles/ascii.app.dir/mina.cpp.o.d -o CMakeFiles/ascii.app.dir/mina.cpp.o -c /mnt/c/Users/camil/Documents/dev/ascii-convertor/mina.cpp
+CMakeFiles/ascii.app.dir/src/mina.cpp.o: CMakeFiles/ascii.app.dir/flags.make
+CMakeFiles/ascii.app.dir/src/mina.cpp.o: /mnt/c/Users/camil/Documents/dev/ascii-convertor/src/mina.cpp
+CMakeFiles/ascii.app.dir/src/mina.cpp.o: CMakeFiles/ascii.app.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/camil/Documents/dev/ascii-convertor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ascii.app.dir/src/mina.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ascii.app.dir/src/mina.cpp.o -MF CMakeFiles/ascii.app.dir/src/mina.cpp.o.d -o CMakeFiles/ascii.app.dir/src/mina.cpp.o -c /mnt/c/Users/camil/Documents/dev/ascii-convertor/src/mina.cpp
 
-CMakeFiles/ascii.app.dir/mina.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ascii.app.dir/mina.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/camil/Documents/dev/ascii-convertor/mina.cpp > CMakeFiles/ascii.app.dir/mina.cpp.i
+CMakeFiles/ascii.app.dir/src/mina.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ascii.app.dir/src/mina.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/camil/Documents/dev/ascii-convertor/src/mina.cpp > CMakeFiles/ascii.app.dir/src/mina.cpp.i
 
-CMakeFiles/ascii.app.dir/mina.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ascii.app.dir/mina.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/camil/Documents/dev/ascii-convertor/mina.cpp -o CMakeFiles/ascii.app.dir/mina.cpp.s
+CMakeFiles/ascii.app.dir/src/mina.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ascii.app.dir/src/mina.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/camil/Documents/dev/ascii-convertor/src/mina.cpp -o CMakeFiles/ascii.app.dir/src/mina.cpp.s
 
 # Object files for target ascii.app
 ascii_app_OBJECTS = \
-"CMakeFiles/ascii.app.dir/mina.cpp.o"
+"CMakeFiles/ascii.app.dir/src/mina.cpp.o"
 
 # External object files for target ascii.app
 ascii_app_EXTERNAL_OBJECTS =
 
-ascii.app: CMakeFiles/ascii.app.dir/mina.cpp.o
+ascii.app: CMakeFiles/ascii.app.dir/src/mina.cpp.o
 ascii.app: CMakeFiles/ascii.app.dir/build.make
 ascii.app: /usr/local/lib/libopencv_gapi.so.4.8.0
 ascii.app: /usr/local/lib/libopencv_highgui.so.4.8.0

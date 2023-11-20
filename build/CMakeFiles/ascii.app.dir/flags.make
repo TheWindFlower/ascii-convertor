@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -isystem /usr/local/include/opencv4
+CXX_INCLUDES = -I/mnt/c/Users/camil/Documents/dev/ascii-convertor/include -isystem /usr/local/include/opencv4
 
 CXX_FLAGS = -g
 

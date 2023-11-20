@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/ascii.app.dir/mina.cpp.o"
-  "CMakeFiles/ascii.app.dir/mina.cpp.o.d"
+  "CMakeFiles/ascii.app.dir/src/mina.cpp.o"
+  "CMakeFiles/ascii.app.dir/src/mina.cpp.o.d"
   "ascii.app"
   "ascii.app.pdb"
 )

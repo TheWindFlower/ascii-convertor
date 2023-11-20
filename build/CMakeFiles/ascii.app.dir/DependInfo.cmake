@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/c/Users/camil/Documents/dev/ascii-convertor/mina.cpp" "CMakeFiles/ascii.app.dir/mina.cpp.o" "gcc" "CMakeFiles/ascii.app.dir/mina.cpp.o.d"
+  "/mnt/c/Users/camil/Documents/dev/ascii-convertor/src/mina.cpp" "CMakeFiles/ascii.app.dir/src/mina.cpp.o" "gcc" "CMakeFiles/ascii.app.dir/src/mina.cpp.o.d"
   )
 
 # Targets to which this target links.

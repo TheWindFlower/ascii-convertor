@@ -129,29 +129,29 @@ ascii.app/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ascii.app.dir/build.make CMakeFiles/ascii.app.dir/build
 .PHONY : ascii.app/fast
 
-mina.o: mina.cpp.o
-.PHONY : mina.o
+src/mina.o: src/mina.cpp.o
+.PHONY : src/mina.o
 
 # target to build an object file
-mina.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ascii.app.dir/build.make CMakeFiles/ascii.app.dir/mina.cpp.o
-.PHONY : mina.cpp.o
+src/mina.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ascii.app.dir/build.make CMakeFiles/ascii.app.dir/src/mina.cpp.o
+.PHONY : src/mina.cpp.o
 
-mina.i: mina.cpp.i
-.PHONY : mina.i
+src/mina.i: src/mina.cpp.i
+.PHONY : src/mina.i
 
 # target to preprocess a source file
-mina.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ascii.app.dir/build.make CMakeFiles/ascii.app.dir/mina.cpp.i
-.PHONY : mina.cpp.i
+src/mina.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ascii.app.dir/build.make CMakeFiles/ascii.app.dir/src/mina.cpp.i
+.PHONY : src/mina.cpp.i
 
-mina.s: mina.cpp.s
-.PHONY : mina.s
+src/mina.s: src/mina.cpp.s
+.PHONY : src/mina.s
 
 # target to generate assembly for a file
-mina.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ascii.app.dir/build.make CMakeFiles/ascii.app.dir/mina.cpp.s
-.PHONY : mina.cpp.s
+src/mina.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ascii.app.dir/build.make CMakeFiles/ascii.app.dir/src/mina.cpp.s
+.PHONY : src/mina.cpp.s
 
 # Help Target
 help:
@@ -162,9 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ascii.app"
-	@echo "... mina.o"
-	@echo "... mina.i"
-	@echo "... mina.s"
+	@echo "... src/mina.o"
+	@echo "... src/mina.i"
+	@echo "... src/mina.s"
 .PHONY : help
 
 
